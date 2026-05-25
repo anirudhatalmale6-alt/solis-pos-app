@@ -369,6 +369,23 @@ tbody tr:last-child td{border-bottom:none}
         <input type="password" id="login-password" placeholder="Enter your password" required>
       </div>
       <button type="submit" class="auth-btn">Sign In</button>
+      <a onclick="showForgotPassword()" style="display:block;text-align:center;margin-top:12px;font-size:13px;color:var(--gold);font-weight:600;cursor:pointer">Forgot Password?</a>
+    </form>
+    <form class="auth-form hidden" id="forgot-form" onsubmit="handleForgotPassword(event)">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="forgot-email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" id="forgot-business" placeholder="Enter your business name to verify" required>
+      </div>
+      <div class="form-group hidden" id="forgot-newpass-group">
+        <label>New Password</label>
+        <input type="password" id="forgot-newpass" placeholder="Min 6 characters" minlength="6">
+      </div>
+      <button type="submit" class="auth-btn" id="forgot-btn">Verify Identity</button>
+      <a onclick="backToLogin()" style="display:block;text-align:center;margin-top:12px;font-size:13px;color:var(--gold);font-weight:600;cursor:pointer">Back to Sign In</a>
     </form>
     <div class="auth-switch" id="auth-switch">Already have an account? <a onclick="toggleAuthMode()">Sign in</a></div>
   </div>
@@ -732,6 +749,51 @@ function toggleAuthMode(){
   $('auth-error').textContent='';
 }
 
+function showForgotPassword(){
+  $('login-form').classList.add('hidden');
+  $('signup-form').classList.add('hidden');
+  $('forgot-form').classList.remove('hidden');
+  $('auth-sub').textContent='Reset your password';
+  $('auth-switch').classList.add('hidden');
+  $('auth-error').textContent='';
+  $('forgot-newpass-group').classList.add('hidden');
+  $('forgot-btn').textContent='Verify Identity';
+  $('forgot-email').value='';$('forgot-business').value='';
+}
+function backToLogin(){
+  $('forgot-form').classList.add('hidden');
+  $('login-form').classList.remove('hidden');
+  $('auth-sub').textContent='Welcome back! Sign in to continue';
+  $('auth-switch').classList.remove('hidden');
+  $('auth-error').textContent='';
+}
+let forgotVerified=null;
+async function handleForgotPassword(e){
+  e.preventDefault();
+  const email=$('forgot-email').value.trim().toLowerCase();
+  const biz=$('forgot-business').value.trim();
+  if(forgotVerified){
+    const newPass=$('forgot-newpass').value;
+    if(!newPass||newPass.length<6){$('auth-error').textContent='Password must be at least 6 characters.';return}
+    forgotVerified.password=newPass;
+    await dbPut('accounts',forgotVerified);
+    forgotVerified=null;
+    showToast('Password reset successfully');
+    backToLogin();
+    return;
+  }
+  const accounts=await dbAll('accounts');
+  const account=accounts.find(a=>a.email===email);
+  if(!account){$('auth-error').textContent='No account found with this email.';return}
+  const s=await loadSettings();
+  if((s.businessName||'').toLowerCase()!==biz.toLowerCase()){$('auth-error').textContent='Business name does not match.';return}
+  forgotVerified=account;
+  $('auth-error').textContent='';
+  $('forgot-newpass-group').classList.remove('hidden');
+  $('forgot-btn').textContent='Reset Password';
+  $('forgot-email').disabled=true;
+  $('forgot-business').disabled=true;
+}
 async function checkExistingAccount(){
   const accounts=await dbAll('accounts');
   if(accounts.length>0){
