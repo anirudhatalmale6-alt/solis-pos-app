@@ -29,33 +29,25 @@ input,select,textarea{font-family:var(--font-body);outline:none}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 .hidden{display:none!important}
 
-/* PIN LOGIN */
-#pin-screen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F7F8FC 0%,#EEF0F6 100%)}
-.pin-card{background:var(--bg2);border-radius:24px;padding:48px;box-shadow:var(--shadow-lg);text-align:center;width:420px;max-width:90vw}
-.pin-logo{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--text);margin-bottom:4px}
-.pin-logo em{font-style:normal;color:var(--gold2)}
-.pin-sub{color:var(--text3);font-size:14px;margin-bottom:32px}
-.pin-users{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:8px}
-.pin-user{display:flex;flex-direction:column;align-items:center;gap:6px;padding:16px;border-radius:16px;border:2px solid var(--border);cursor:pointer;transition:all 0.2s;width:100px}
-.pin-user:hover{border-color:var(--gold2);background:rgba(245,158,11,0.04)}
-.pin-user .avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:18px;color:#fff}
-.pin-user .uname{font-size:12px;font-weight:600;color:var(--text)}
-.pin-user .urole{font-size:11px;color:var(--text3);text-transform:capitalize}
-#pin-entry{display:none}
-.pin-sel-name{font-family:var(--font-display);font-weight:700;font-size:18px;margin-bottom:20px;color:var(--text)}
-.pin-dots{display:flex;gap:12px;justify-content:center;margin-bottom:8px}
-.pin-dots span{width:16px;height:16px;border-radius:50%;border:2px solid var(--border2);transition:all 0.2s}
-.pin-dots span.filled{background:var(--gold2);border-color:var(--gold2)}
-.pin-error{color:var(--red);font-size:13px;height:20px;margin-bottom:8px}
-.pin-keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:260px;margin:0 auto 16px}
-.pin-keypad button{height:56px;border-radius:12px;font-size:22px;font-weight:600;font-family:var(--font-display);background:var(--bg);border:1px solid var(--border);color:var(--text);transition:all 0.15s}
-.pin-keypad button:hover{background:var(--border)}
-.pin-keypad button:active{transform:scale(0.95)}
-.pin-keypad .fn{font-size:18px;color:var(--text2)}
-.pin-keypad .enter{background:var(--gold2);color:#fff;border-color:var(--gold2)}
-.pin-keypad .enter:hover{background:var(--gold)}
-.pin-back{font-size:13px;color:var(--text3);cursor:pointer;display:inline-flex;align-items:center;gap:4px;padding:8px 16px;border-radius:8px;transition:color 0.2s}
-.pin-back:hover{color:var(--text)}
+/* AUTH SCREEN */
+#auth-screen{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#F7F8FC 0%,#EEF0F6 100%)}
+.auth-card{background:var(--bg2);border-radius:24px;padding:48px;box-shadow:var(--shadow-lg);width:440px;max-width:90vw}
+.auth-logo{font-family:var(--font-display);font-size:28px;font-weight:800;color:var(--text);margin-bottom:4px;text-align:center}
+.auth-logo em{font-style:normal;color:var(--gold2)}
+.auth-sub{color:var(--text3);font-size:14px;margin-bottom:28px;text-align:center}
+.auth-form .form-group{margin-bottom:16px}
+.auth-form .form-group label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.3px}
+.auth-form .form-group input{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:10px;font-size:14px;color:var(--text);background:var(--bg2);transition:border-color 0.2s}
+.auth-form .form-group input:focus{border-color:var(--gold2)}
+.auth-form .form-group input::placeholder{color:var(--text3)}
+.auth-btn{width:100%;padding:14px;border-radius:12px;background:var(--gold2);color:#fff;font-size:15px;font-weight:700;font-family:var(--font-display);transition:all 0.2s;margin-top:8px;cursor:pointer;border:none}
+.auth-btn:hover{background:var(--gold);box-shadow:0 4px 16px var(--gold-glow)}
+.auth-error{color:var(--red);font-size:13px;min-height:20px;margin-bottom:8px;text-align:center}
+.auth-switch{text-align:center;margin-top:20px;font-size:13px;color:var(--text3)}
+.auth-switch a{color:var(--gold);font-weight:600;cursor:pointer}
+.auth-switch a:hover{text-decoration:underline}
+.auth-divider{display:flex;align-items:center;gap:12px;margin:20px 0;color:var(--text3);font-size:12px}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--border)}
 @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
 .shake{animation:shake 0.3s ease}
 
@@ -291,24 +283,43 @@ tbody tr:last-child td{border-bottom:none}
 </head>
 <body>
 
-<!-- PIN LOGIN -->
-<div id="pin-screen">
-  <div class="pin-card">
-    <div class="pin-logo">Solis OS <em>POS</em></div>
-    <p class="pin-sub">Select your account to begin</p>
-    <div class="pin-users" id="pin-users"></div>
-    <div id="pin-entry">
-      <div class="pin-sel-name" id="pin-sel-name"></div>
-      <div class="pin-dots" id="pin-dots"><span></span><span></span><span></span><span></span></div>
-      <div class="pin-error" id="pin-error"></div>
-      <div class="pin-keypad">
-        <button onclick="pinDigit(1)">1</button><button onclick="pinDigit(2)">2</button><button onclick="pinDigit(3)">3</button>
-        <button onclick="pinDigit(4)">4</button><button onclick="pinDigit(5)">5</button><button onclick="pinDigit(6)">6</button>
-        <button onclick="pinDigit(7)">7</button><button onclick="pinDigit(8)">8</button><button onclick="pinDigit(9)">9</button>
-        <button onclick="pinClear()" class="fn">&#9003;</button><button onclick="pinDigit(0)">0</button><button onclick="pinSubmit()" class="enter">&#10132;</button>
+<!-- AUTH SCREEN -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">Solis OS <em>POS</em></div>
+    <p class="auth-sub" id="auth-sub">Create your account to get started</p>
+    <div class="auth-error" id="auth-error"></div>
+    <form class="auth-form" id="signup-form" onsubmit="handleSignup(event)">
+      <div class="form-group">
+        <label>Business Name</label>
+        <input type="text" id="signup-business" placeholder="e.g. Downtown Coffee Shop" required>
       </div>
-      <div class="pin-back" onclick="pinBack()">&#8592; Back to accounts</div>
-    </div>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="signup-name" placeholder="e.g. John Smith" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="signup-email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="signup-password" placeholder="Min 6 characters" required minlength="6">
+      </div>
+      <button type="submit" class="auth-btn">Create Account</button>
+    </form>
+    <form class="auth-form hidden" id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="login-email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="login-password" placeholder="Enter your password" required>
+      </div>
+      <button type="submit" class="auth-btn">Sign In</button>
+    </form>
+    <div class="auth-switch" id="auth-switch">Already have an account? <a onclick="toggleAuthMode()">Sign in</a></div>
   </div>
 </div>
 
@@ -484,7 +495,7 @@ const DEFAULT_SETTINGS = {
 let db;
 function openDB(){
   return new Promise((resolve,reject)=>{
-    const req=indexedDB.open('SolisPOS',1);
+    const req=indexedDB.open('SolisPOS',2);
     req.onerror=()=>reject(req.error);
     req.onsuccess=()=>{db=req.result;resolve(db)};
     req.onupgradeneeded=(e)=>{
@@ -496,6 +507,10 @@ function openDB(){
       if(!d.objectStoreNames.contains('sales'))d.createObjectStore('sales',{keyPath:'id',autoIncrement:true});
       if(!d.objectStoreNames.contains('staff'))d.createObjectStore('staff',{keyPath:'id',autoIncrement:true});
       if(!d.objectStoreNames.contains('settings'))d.createObjectStore('settings',{keyPath:'key'});
+      if(!d.objectStoreNames.contains('accounts')){
+        const a=d.createObjectStore('accounts',{keyPath:'id',autoIncrement:true});
+        a.createIndex('email','email',{unique:true});
+      }
     };
   });
 }
@@ -508,12 +523,6 @@ function dbClear(store){return new Promise((r,j)=>{const q=db.transaction(store,
 async function seedData(){
   const prods=await dbAll('products');
   if(prods.length===0){for(const p of SAMPLE_PRODUCTS)await dbPut('products',{...p,createdAt:new Date().toISOString()})}
-  const staff=await dbAll('staff');
-  if(staff.length===0){
-    await dbPut('staff',{name:'Admin',role:'admin',pin:'1234',active:true,createdAt:new Date().toISOString()});
-    await dbPut('staff',{name:'Sarah M.',role:'manager',pin:'5678',active:true,createdAt:new Date().toISOString()});
-    await dbPut('staff',{name:'James K.',role:'cashier',pin:'0000',active:true,createdAt:new Date().toISOString()});
-  }
   const sett=await dbAll('settings');
   if(sett.length===0){for(const[k,v]of Object.entries(DEFAULT_SETTINGS))await dbPut('settings',{key:k,value:v})}
   const sales=await dbAll('sales');
@@ -586,66 +595,83 @@ function navigate(screen,e){
 }
 
 // ═══════════════════════════════════════════
-// PIN LOGIN
+// AUTH (SIGNUP / LOGIN)
 // ═══════════════════════════════════════════
-let pinUser=null;let pinCode='';
+let authMode='signup';
 
-async function renderPinUsers(){
-  const staff=await dbAll('staff');
-  const el=$('pin-users');
-  el.innerHTML=staff.filter(s=>s.active).map((s,i)=>`
-    <div class="pin-user" onclick="selectPinUser(${s.id})">
-      <div class="avatar" style="background:${AVATAR_COLORS[i%AVATAR_COLORS.length]}">${s.name[0]}</div>
-      <div class="uname">${s.name}</div>
-      <div class="urole">${s.role}</div>
-    </div>`).join('');
+function toggleAuthMode(){
+  authMode=authMode==='signup'?'login':'signup';
+  $('signup-form').classList.toggle('hidden',authMode==='login');
+  $('login-form').classList.toggle('hidden',authMode==='signup');
+  $('auth-sub').textContent=authMode==='signup'?'Create your account to get started':'Welcome back! Sign in to continue';
+  $('auth-switch').innerHTML=authMode==='signup'?'Already have an account? <a onclick="toggleAuthMode()">Sign in</a>':'Don\'t have an account? <a onclick="toggleAuthMode()">Sign up</a>';
+  $('auth-error').textContent='';
 }
 
-function selectPinUser(id){
-  dbGet('staff',id).then(u=>{
-    pinUser=u;pinCode='';
-    $('pin-sel-name').textContent=u.name;
-    $('pin-users').style.display='none';
-    $('pin-entry').style.display='block';
-    updatePinDots();$('pin-error').textContent='';
-  });
-}
-
-function pinDigit(d){if(pinCode.length<4){pinCode+=d;updatePinDots()}}
-function pinClear(){pinCode=pinCode.slice(0,-1);updatePinDots()}
-function updatePinDots(){
-  const dots=$('pin-dots').children;
-  for(let i=0;i<4;i++)dots[i].classList.toggle('filled',i<pinCode.length);
-}
-
-function pinSubmit(){
-  if(pinCode.length!==4)return;
-  if(pinCode===pinUser.pin){
-    currentUser=pinUser;
-    $('pin-screen').classList.add('hidden');
-    $('app').classList.remove('hidden');
-    $('h-avatar').textContent=currentUser.name[0];
-    $('h-username').textContent=currentUser.name;
-    loadCheckout();
-  } else {
-    $('pin-error').textContent='Incorrect PIN. Try again.';
-    pinCode='';updatePinDots();
-    $('pin-dots').classList.add('shake');
-    setTimeout(()=>$('pin-dots').classList.remove('shake'),400);
+async function checkExistingAccount(){
+  const accounts=await dbAll('accounts');
+  if(accounts.length>0){
+    authMode='login';
+    $('signup-form').classList.add('hidden');
+    $('login-form').classList.remove('hidden');
+    $('auth-sub').textContent='Welcome back! Sign in to continue';
+    $('auth-switch').innerHTML='Don\'t have an account? <a onclick="toggleAuthMode()">Sign up</a>';
   }
 }
 
-function pinBack(){
-  $('pin-users').style.display='flex';
-  $('pin-entry').style.display='none';
-  pinUser=null;pinCode='';
+async function handleSignup(e){
+  e.preventDefault();
+  const business=$('signup-business').value.trim();
+  const name=$('signup-name').value.trim();
+  const email=$('signup-email').value.trim().toLowerCase();
+  const password=$('signup-password').value;
+  if(!business||!name||!email||!password){$('auth-error').textContent='Please fill in all fields.';return}
+  if(password.length<6){$('auth-error').textContent='Password must be at least 6 characters.';return}
+  const existing=await dbAll('accounts');
+  if(existing.find(a=>a.email===email)){$('auth-error').textContent='An account with this email already exists.';return}
+  const account={name,email,password,role:'admin',active:true,createdAt:new Date().toISOString()};
+  await dbPut('accounts',account);
+  await dbPut('staff',{name,role:'admin',pin:'0000',active:true,createdAt:new Date().toISOString()});
+  await dbPut('settings',{key:'businessName',value:business});
+  settings=await loadSettings();
+  $('sidebar-name').textContent=business;
+  currentUser={name,role:'admin',email};
+  $('auth-screen').classList.add('hidden');
+  $('app').classList.remove('hidden');
+  $('h-avatar').textContent=name[0];
+  $('h-username').textContent=name;
+  loadCheckout();
+}
+
+async function handleLogin(e){
+  e.preventDefault();
+  const email=$('login-email').value.trim().toLowerCase();
+  const password=$('login-password').value;
+  if(!email||!password){$('auth-error').textContent='Please enter email and password.';return}
+  const accounts=await dbAll('accounts');
+  const account=accounts.find(a=>a.email===email);
+  if(!account||account.password!==password){$('auth-error').textContent='Invalid email or password.';return}
+  currentUser={name:account.name,role:account.role,email:account.email};
+  settings=await loadSettings();
+  if(settings.businessName)$('sidebar-name').textContent=settings.businessName;
+  $('auth-screen').classList.add('hidden');
+  $('app').classList.remove('hidden');
+  $('h-avatar').textContent=account.name[0];
+  $('h-username').textContent=account.name;
+  loadCheckout();
 }
 
 function lockScreen(){
   currentUser=null;cart=[];
   $('app').classList.add('hidden');
-  $('pin-screen').classList.remove('hidden');
-  pinBack();renderPinUsers();
+  $('auth-screen').classList.remove('hidden');
+  authMode='login';
+  $('signup-form').classList.add('hidden');
+  $('login-form').classList.remove('hidden');
+  $('auth-sub').textContent='Welcome back! Sign in to continue';
+  $('auth-switch').innerHTML='Don\'t have an account? <a onclick="toggleAuthMode()">Sign up</a>';
+  $('auth-error').textContent='';
+  $('login-email').value='';$('login-password').value='';
 }
 
 // ═══════════════════════════════════════════
@@ -1255,13 +1281,12 @@ function closeModal(){
     await seedData();
     settings=await loadSettings();
     allProducts=await dbAll('products');
-    await renderPinUsers();
+    await checkExistingAccount();
     setInterval(updateClock,1000);updateClock();
 
-    // Keyboard shortcut for barcode focus
     document.addEventListener('keydown',e=>{
       if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA'||e.target.tagName==='SELECT')return;
-      if(currentScreen==='checkout'&&!$('pin-screen').classList.contains('hidden'))return;
+      if(currentScreen==='checkout'&&!$('auth-screen').classList.contains('hidden'))return;
       if(currentScreen==='checkout'){$('product-search').focus()}
     });
   }catch(e){console.error('Init error:',e)}
