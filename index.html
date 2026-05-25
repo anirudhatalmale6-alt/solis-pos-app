@@ -227,6 +227,41 @@ tbody tr:last-child td{border-bottom:none}
 .btn-danger:hover{background:var(--red);color:#fff}
 .btn-row{display:flex;gap:8px;margin-top:12px}
 
+/* CUSTOMER SELECTOR (CHECKOUT) */
+.customer-bar{display:flex;align-items:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--bg)}
+.customer-bar button{padding:6px 14px;border-radius:8px;border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text2);display:flex;align-items:center;gap:6px;transition:all 0.2s;background:var(--bg2)}
+.customer-bar button svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.customer-bar button:hover{border-color:var(--gold2);color:var(--gold)}
+.customer-bar .customer-selected{flex:1;font-size:12px;color:var(--text);font-weight:500;display:flex;align-items:center;gap:6px}
+.customer-bar .customer-selected strong{color:var(--gold)}
+.customer-bar .customer-pts{font-size:11px;color:var(--text3);background:var(--amber-bg);padding:2px 8px;border-radius:10px;font-weight:600}
+.redeem-row{display:flex;align-items:center;gap:6px;padding:4px 0}
+.redeem-row .redeem-btn{padding:3px 10px;border-radius:6px;border:1px solid var(--green);color:var(--green);font-size:11px;font-weight:600;background:var(--green-bg);cursor:pointer;transition:all 0.2s}
+.redeem-row .redeem-btn:hover{background:var(--green);color:#fff}
+.redeem-row .redeem-info{font-size:11px;color:var(--text3)}
+.customer-search-dropdown{position:relative}
+.customer-search-dropdown input{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px}
+.customer-search-dropdown input:focus{border-color:var(--gold2)}
+.customer-search-results{position:absolute;top:100%;left:0;right:0;background:var(--bg2);border:1px solid var(--border);border-radius:0 0 8px 8px;max-height:180px;overflow-y:auto;z-index:10;box-shadow:var(--shadow)}
+.customer-search-results .cs-item{padding:8px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--bg3);display:flex;justify-content:space-between}
+.customer-search-results .cs-item:hover{background:rgba(245,158,11,0.06)}
+.customer-search-results .cs-item:last-child{border-bottom:none}
+.customer-search-results .cs-item .cs-name{font-weight:600}
+.customer-search-results .cs-item .cs-phone{color:var(--text3);font-size:12px}
+
+/* PROMO APPLIED (CHECKOUT) */
+.promo-line{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:12px;color:var(--green);font-weight:500}
+.promo-line svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.promo-line .promo-label{display:flex;align-items:center;gap:4px;flex:1;min-width:0}
+.promo-line .promo-label span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.promo-line .promo-saved{font-weight:700;white-space:nowrap}
+
+/* PROMOTIONS / LOYALTY SCREENS */
+.promo-type-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.promo-type-bxgy{background:#dbeafe;color:#3b82f6}
+.promo-type-bundle{background:#f3e8ff;color:#8b5cf6}
+.promo-type-percent{background:#fef3c7;color:#d97706}
+
 /* MODAL */
 .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,0.4);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
 .modal-card{background:var(--bg2);border-radius:20px;box-shadow:var(--shadow-lg);width:100%;max-height:90vh;overflow-y:auto;animation:modalIn 0.2s ease}
@@ -347,9 +382,17 @@ tbody tr:last-child td{border-bottom:none}
         <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
         <span>Reports</span>
       </a>
+      <a href="#" class="nav-item" data-screen="promotions" onclick="navigate('promotions',event)">
+        <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+        <span>Promotions</span>
+      </a>
       <a href="#" class="nav-item" data-screen="staff" onclick="navigate('staff',event)">
         <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
         <span>Staff</span>
+      </a>
+      <a href="#" class="nav-item" data-screen="loyalty" onclick="navigate('loyalty',event)">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span>Loyalty</span>
       </a>
       <a href="#" class="nav-item" data-screen="settings" onclick="navigate('settings',event)">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
@@ -387,6 +430,10 @@ tbody tr:last-child td{border-bottom:none}
           <div class="product-grid" id="product-grid"></div>
         </div>
         <div class="checkout-cart">
+          <div class="customer-bar" id="customer-bar">
+            <button onclick="showCustomerSelector()"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Customer</button>
+            <div class="customer-selected" id="customer-display" style="display:none"></div>
+          </div>
           <div class="cart-header">
             <h2>Current Order</h2>
             <span class="cart-count" id="cart-count">0 items</span>
@@ -396,11 +443,13 @@ tbody tr:last-child td{border-bottom:none}
           </div>
           <div class="cart-summary">
             <div class="cart-row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+            <div id="promo-lines"></div>
             <div class="cart-row"><span id="tax-label">Tax (8.5%)</span><span id="cart-tax">$0.00</span></div>
             <div class="cart-row">
               <span>Discount</span>
               <div class="discount-input"><span>$</span><input type="number" id="discount-input" value="0" min="0" step="0.01" oninput="updateCartTotals()"></div>
             </div>
+            <div id="redeem-row" style="display:none"></div>
             <div class="cart-row cart-total"><span>Total</span><span id="cart-total">$0.00</span></div>
           </div>
           <div class="cart-payment">
@@ -428,7 +477,9 @@ tbody tr:last-child td{border-bottom:none}
     <div id="screen-products" class="screen"></div>
     <div id="screen-sales" class="screen"></div>
     <div id="screen-reports" class="screen"></div>
+    <div id="screen-promotions" class="screen"></div>
     <div id="screen-staff" class="screen"></div>
+    <div id="screen-loyalty" class="screen"></div>
     <div id="screen-settings" class="screen"></div>
   </main>
 </div>
@@ -495,7 +546,7 @@ const DEFAULT_SETTINGS = {
 let db;
 function openDB(){
   return new Promise((resolve,reject)=>{
-    const req=indexedDB.open('SolisPOS',2);
+    const req=indexedDB.open('SolisPOS',3);
     req.onerror=()=>reject(req.error);
     req.onsuccess=()=>{db=req.result;resolve(db)};
     req.onupgradeneeded=(e)=>{
@@ -511,6 +562,11 @@ function openDB(){
         const a=d.createObjectStore('accounts',{keyPath:'id',autoIncrement:true});
         a.createIndex('email','email',{unique:true});
       }
+      if(!d.objectStoreNames.contains('customers')){
+        const c=d.createObjectStore('customers',{keyPath:'id',autoIncrement:true});
+        c.createIndex('phone','phone');
+      }
+      if(!d.objectStoreNames.contains('promotions'))d.createObjectStore('promotions',{keyPath:'id',autoIncrement:true});
     };
   });
 }
@@ -525,6 +581,12 @@ async function seedData(){
   if(prods.length===0){for(const p of SAMPLE_PRODUCTS)await dbPut('products',{...p,createdAt:new Date().toISOString()})}
   const sett=await dbAll('settings');
   if(sett.length===0){for(const[k,v]of Object.entries(DEFAULT_SETTINGS))await dbPut('settings',{key:k,value:v})}
+  // Seed loyalty defaults if missing
+  const settMap={};(await dbAll('settings')).forEach(s=>settMap[s.key]=s.value);
+  if(settMap.loyaltyEnabled===undefined)await dbPut('settings',{key:'loyaltyEnabled',value:true});
+  if(settMap.loyaltyPointsPerDollar===undefined)await dbPut('settings',{key:'loyaltyPointsPerDollar',value:1});
+  if(settMap.loyaltyRedemptionThreshold===undefined)await dbPut('settings',{key:'loyaltyRedemptionThreshold',value:100});
+  if(settMap.loyaltyRedemptionRate===undefined)await dbPut('settings',{key:'loyaltyRedemptionRate',value:5});
   const sales=await dbAll('sales');
   if(sales.length===0)await seedSampleSales();
 }
@@ -558,6 +620,10 @@ let settings={};
 let allProducts=[];
 let selectedCategory='All';
 let selectedPayment='cash';
+let selectedCustomer=null;
+let redeemingPoints=false;
+let appliedPromos=[];
+let allPromotions=[];
 
 // ═══════════════════════════════════════════
 // UTILITIES
@@ -585,12 +651,14 @@ function navigate(screen,e){
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.screen===screen));
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   $('screen-'+screen).classList.add('active');
-  const titles={checkout:'Checkout',products:'Products',sales:'Sales History',reports:'Reports',staff:'Staff',settings:'Settings'};
+  const titles={checkout:'Checkout',products:'Products',sales:'Sales History',reports:'Reports',promotions:'Promotions',staff:'Staff',loyalty:'Loyalty Program',settings:'Settings'};
   $('screen-title').textContent=titles[screen]||screen;
   if(screen==='products')renderProductsScreen();
   if(screen==='sales')renderSalesScreen();
   if(screen==='reports')renderReportsScreen();
+  if(screen==='promotions')renderPromotionsScreen();
   if(screen==='staff')renderStaffScreen();
+  if(screen==='loyalty')renderLoyaltyScreen();
   if(screen==='settings')renderSettingsScreen();
 }
 
@@ -680,6 +748,7 @@ function lockScreen(){
 async function loadCheckout(){
   allProducts=await dbAll('products');
   settings=await loadSettings();
+  allPromotions=await dbAll('promotions');
   renderCategoryTabs();renderProductGrid();updateCartUI();
   $('tax-label').textContent=`${settings.taxName||'Tax'} (${settings.taxRate||0}%)`;
 }
@@ -733,7 +802,7 @@ function updateQty(idx,delta){
   updateCartUI();
 }
 
-function clearCart(){cart=[];$('discount-input').value=0;updateCartUI()}
+function clearCart(){cart=[];$('discount-input').value=0;selectedCustomer=null;redeemingPoints=false;appliedPromos=[];updateCustomerBar();updateCartUI()}
 
 function updateCartUI(){
   const el=$('cart-items');
@@ -758,10 +827,38 @@ function updateCartUI(){
 
 function updateCartTotals(){
   const subtotal=cart.reduce((s,c)=>s+c.total,0);
+  // Calculate promotions
+  appliedPromos=calculatePromotions();
+  const promoDiscount=appliedPromos.reduce((s,p)=>s+p.saved,0);
+  // Render promo lines
+  const promoEl=$('promo-lines');
+  if(appliedPromos.length>0){
+    promoEl.innerHTML=appliedPromos.map(p=>`<div class="promo-line"><div class="promo-label"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><span>${p.name}</span></div><span class="promo-saved">-${fmt(p.saved)}</span></div>`).join('');
+  } else { promoEl.innerHTML=''; }
+  // Loyalty redemption
+  const redeemEl=$('redeem-row');
+  let loyaltyDiscount=0;
+  const loyaltyEnabled=settings.loyaltyEnabled!==false;
+  const redemptionRate=parseFloat(settings.loyaltyRedemptionRate)||5;
+  const redemptionThreshold=parseInt(settings.loyaltyRedemptionThreshold)||100;
+  if(selectedCustomer&&loyaltyEnabled&&selectedCustomer.points>=redemptionThreshold){
+    if(redeemingPoints){
+      const timesRedeemable=Math.floor(selectedCustomer.points/redemptionThreshold);
+      loyaltyDiscount=+(timesRedeemable*redemptionRate).toFixed(2);
+      if(loyaltyDiscount>subtotal-promoDiscount)loyaltyDiscount=+(subtotal-promoDiscount).toFixed(2);
+      redeemEl.innerHTML=`<div class="redeem-row"><span style="font-size:12px;color:var(--green);font-weight:600">Loyalty: -${fmt(loyaltyDiscount)} (${timesRedeemable*redemptionThreshold} pts)</span><button class="redeem-btn" onclick="redeemingPoints=false;updateCartTotals()" style="border-color:var(--red);color:var(--red);background:var(--red-bg)">Cancel</button></div>`;
+      redeemEl.style.display='block';
+    } else {
+      redeemEl.innerHTML=`<div class="redeem-row"><span class="redeem-info">${selectedCustomer.points} pts available</span><button class="redeem-btn" onclick="redeemingPoints=true;updateCartTotals()">Redeem ${redemptionThreshold} pts = ${fmt(redemptionRate)} off</button></div>`;
+      redeemEl.style.display='block';
+    }
+  } else { redeemEl.innerHTML='';redeemEl.style.display='none'; }
+
   const taxRate=settings.taxRate||0;
-  const tax=subtotal*taxRate/100;
+  const afterPromo=Math.max(0,subtotal-promoDiscount);
+  const tax=afterPromo*taxRate/100;
   const discount=parseFloat($('discount-input').value)||0;
-  const total=Math.max(0,subtotal+tax-discount);
+  const total=Math.max(0,afterPromo+tax-discount-loyaltyDiscount);
   $('cart-subtotal').textContent=fmt(subtotal);
   $('cart-tax').textContent=fmt(tax);
   $('cart-total').textContent=fmt(total);
@@ -776,15 +873,33 @@ function selectPayment(el){
 async function completeSale(){
   if(cart.length===0)return;
   const subtotal=cart.reduce((s,c)=>s+c.total,0);
+  const promoDiscount=appliedPromos.reduce((s,p)=>s+p.saved,0);
+  const afterPromo=Math.max(0,subtotal-promoDiscount);
   const taxRate=settings.taxRate||0;
-  const tax=+(subtotal*taxRate/100).toFixed(2);
-  const discount=parseFloat($('discount-input').value)||0;
-  const total=+Math.max(0,subtotal+tax-discount).toFixed(2);
+  const tax=+(afterPromo*taxRate/100).toFixed(2);
+  const manualDiscount=parseFloat($('discount-input').value)||0;
+  // Loyalty redemption
+  let loyaltyDiscount=0;let pointsUsed=0;
+  const loyaltyEnabled=settings.loyaltyEnabled!==false;
+  const redemptionRate=parseFloat(settings.loyaltyRedemptionRate)||5;
+  const redemptionThreshold=parseInt(settings.loyaltyRedemptionThreshold)||100;
+  if(redeemingPoints&&selectedCustomer&&loyaltyEnabled){
+    const timesRedeemable=Math.floor(selectedCustomer.points/redemptionThreshold);
+    loyaltyDiscount=+(timesRedeemable*redemptionRate).toFixed(2);
+    if(loyaltyDiscount>afterPromo)loyaltyDiscount=+afterPromo.toFixed(2);
+    pointsUsed=timesRedeemable*redemptionThreshold;
+  }
+  const total=+Math.max(0,afterPromo+tax-manualDiscount-loyaltyDiscount).toFixed(2);
   const saleNum=settings.nextSaleNumber||1;
   const sale={
     saleNumber:`SOL-${String(saleNum).padStart(4,'0')}`,
-    items:cart.map(c=>({...c})),subtotal:+subtotal.toFixed(2),tax,discount:+discount.toFixed(2),total,
-    paymentMethod:selectedPayment,staffId:currentUser.id,staffName:currentUser.name,
+    items:cart.map(c=>({...c})),subtotal:+subtotal.toFixed(2),tax,
+    discount:+(manualDiscount).toFixed(2),promoDiscount:+promoDiscount.toFixed(2),
+    loyaltyDiscount:+loyaltyDiscount.toFixed(2),
+    appliedPromos:appliedPromos.map(p=>({name:p.name,saved:p.saved})),
+    customerId:selectedCustomer?selectedCustomer.id:null,
+    customerName:selectedCustomer?selectedCustomer.name:null,
+    total,paymentMethod:selectedPayment,staffId:currentUser.id,staffName:currentUser.name,
     createdAt:new Date().toISOString()
   };
   await dbPut('sales',sale);
@@ -794,8 +909,19 @@ async function completeSale(){
     const p=allProducts.find(x=>x.id===item.productId);
     if(p){p.stock=Math.max(0,p.stock-item.qty);await dbPut('products',p)}
   }
+  // Award loyalty points
+  if(selectedCustomer&&loyaltyEnabled){
+    const pointsPerDollar=parseFloat(settings.loyaltyPointsPerDollar)||1;
+    const earnedPoints=Math.floor(total*pointsPerDollar);
+    selectedCustomer.points=(selectedCustomer.points||0)-pointsUsed+earnedPoints;
+    selectedCustomer.totalSpent=(selectedCustomer.totalSpent||0)+total;
+    selectedCustomer.visits=(selectedCustomer.visits||0)+1;
+    selectedCustomer.lastVisit=new Date().toISOString();
+    await dbPut('customers',selectedCustomer);
+  }
   showReceipt(sale);
-  cart=[];$('discount-input').value=0;updateCartUI();renderProductGrid();
+  cart=[];$('discount-input').value=0;selectedCustomer=null;redeemingPoints=false;appliedPromos=[];
+  updateCustomerBar();updateCartUI();renderProductGrid();
   showToast('Sale completed!');
 }
 
@@ -812,9 +938,12 @@ function showReceipt(sale){
   <div class="r-line"></div>`;
   sale.items.forEach(it=>{html+=`<div class="r-row"><span>${it.name} x${it.qty}</span><span>${fmt(it.total)}</span></div>`});
   html+=`<div class="r-line"></div>
-  <div class="r-row"><span>Subtotal</span><span>${fmt(sale.subtotal)}</span></div>
-  <div class="r-row"><span>${s.taxName||'Tax'} (${s.taxRate||0}%)</span><span>${fmt(sale.tax)}</span></div>`;
+  <div class="r-row"><span>Subtotal</span><span>${fmt(sale.subtotal)}</span></div>`;
+  if(sale.appliedPromos&&sale.appliedPromos.length>0)sale.appliedPromos.forEach(p=>{html+=`<div class="r-row" style="color:var(--green)"><span>${p.name}</span><span>-${fmt(p.saved)}</span></div>`});
+  html+=`<div class="r-row"><span>${s.taxName||'Tax'} (${s.taxRate||0}%)</span><span>${fmt(sale.tax)}</span></div>`;
   if(sale.discount>0)html+=`<div class="r-row"><span>Discount</span><span>-${fmt(sale.discount)}</span></div>`;
+  if(sale.loyaltyDiscount>0)html+=`<div class="r-row" style="color:var(--green)"><span>Loyalty Points</span><span>-${fmt(sale.loyaltyDiscount)}</span></div>`;
+  if(sale.customerName)html+=`<div class="r-row"><span>Customer</span><span>${sale.customerName}</span></div>`;
   html+=`<div class="r-line"></div>
   <div class="r-row r-total"><span>TOTAL</span><span>${fmt(sale.total)}</span></div>
   <div class="r-line"></div>
@@ -1225,7 +1354,7 @@ async function saveSettings(){
 }
 
 async function exportData(){
-  const data={products:await dbAll('products'),sales:await dbAll('sales'),staff:await dbAll('staff'),settings:await dbAll('settings')};
+  const data={products:await dbAll('products'),sales:await dbAll('sales'),staff:await dbAll('staff'),settings:await dbAll('settings'),customers:await dbAll('customers'),promotions:await dbAll('promotions')};
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);
   a.download='solis-pos-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
@@ -1242,6 +1371,8 @@ async function importData(input){
     if(data.sales){await dbClear('sales');for(const s of data.sales)await dbPut('sales',s)}
     if(data.staff){await dbClear('staff');for(const s of data.staff)await dbPut('staff',s)}
     if(data.settings){await dbClear('settings');for(const s of data.settings)await dbPut('settings',s)}
+    if(data.customers){await dbClear('customers');for(const c of data.customers)await dbPut('customers',c)}
+    if(data.promotions){await dbClear('promotions');for(const p of data.promotions)await dbPut('promotions',p)}
     allProducts=await dbAll('products');settings=await loadSettings();
     showToast('Data imported successfully');renderSettingsScreen();
   }catch(e){showToast('Invalid file format')}
@@ -1251,10 +1382,421 @@ async function importData(input){
 async function clearAllData(){
   if(!confirm('Are you sure? This will delete ALL products, sales, staff, and settings.'))return;
   if(!confirm('This cannot be undone. Last chance to cancel.'))return;
-  await dbClear('products');await dbClear('sales');await dbClear('staff');await dbClear('settings');
+  await dbClear('products');await dbClear('sales');await dbClear('staff');await dbClear('settings');await dbClear('customers');await dbClear('promotions');
   await seedData();
   allProducts=await dbAll('products');settings=await loadSettings();
   showToast('Data cleared and reset to defaults');renderSettingsScreen();
+}
+
+// ═══════════════════════════════════════════
+// LOYALTY / CUSTOMERS
+// ═══════════════════════════════════════════
+async function renderLoyaltyScreen(){
+  const customers=await dbAll('customers');
+  const s=await loadSettings();
+  const loyaltyEnabled=s.loyaltyEnabled!==false;
+  const pointsPerDollar=parseFloat(s.loyaltyPointsPerDollar)||1;
+  const redemptionRate=parseFloat(s.loyaltyRedemptionRate)||5;
+  const redemptionThreshold=parseInt(s.loyaltyRedemptionThreshold)||100;
+  const totalCustomers=customers.length;
+  const totalPoints=customers.reduce((sum,c)=>sum+(c.points||0),0);
+  const totalSpent=customers.reduce((sum,c)=>sum+(c.totalSpent||0),0);
+  $('screen-loyalty').innerHTML=`
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div><div class="stat-info"><h3>${totalCustomers}</h3><p>Total Customers</p></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(139,92,246,0.1);color:#8b5cf6"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="stat-info"><h3>${totalPoints.toLocaleString()}</h3><p>Total Points Outstanding</p></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(16,185,129,0.1);color:#10b981"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><div class="stat-info"><h3>${fmt(totalSpent)}</h3><p>Total Customer Spend</p></div></div>
+    </div>
+    <div class="settings-grid" style="margin-bottom:24px">
+      <div class="settings-card full">
+        <h3>Loyalty Configuration</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:16px;align-items:end">
+          <div class="form-group"><label>Points per $1 Spent</label><input id="loy-ppd" type="number" step="0.1" min="0" value="${pointsPerDollar}"></div>
+          <div class="form-group"><label>Redemption Threshold (pts)</label><input id="loy-thresh" type="number" min="1" value="${redemptionThreshold}"></div>
+          <div class="form-group"><label>Redemption Value ($)</label><input id="loy-rate" type="number" step="0.5" min="0" value="${redemptionRate}"></div>
+          <div style="display:flex;gap:8px;align-items:center;padding-bottom:16px">
+            <label class="toggle"><input type="checkbox" id="loy-enabled" ${loyaltyEnabled?'checked':''}><span class="slider"></span></label>
+            <span style="font-size:13px;font-weight:500">${loyaltyEnabled?'Enabled':'Disabled'}</span>
+          </div>
+        </div>
+        <button class="btn-primary" onclick="saveLoyaltyConfig()">Save Configuration</button>
+      </div>
+    </div>
+    <div class="table-card">
+      <div class="table-header">
+        <h2>Customers</h2>
+        <div class="table-actions">
+          <div class="search-sm"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="text" placeholder="Search customers..." oninput="filterCustomersTable(this.value)"></div>
+          <button class="btn-add" onclick="showCustomerForm()"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add Customer</button>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+      <table><thead><tr><th>Name</th><th>Phone</th><th>Email</th><th>Points</th><th>Total Spent</th><th>Visits</th><th></th></tr></thead>
+      <tbody id="customers-tbody"></tbody></table>
+      </div>
+    </div>`;
+  renderCustomersTable(customers);
+}
+
+let custSearchVal='';
+function filterCustomersTable(v){custSearchVal=v.toLowerCase();dbAll('customers').then(c=>{const f=c.filter(x=>x.name.toLowerCase().includes(custSearchVal)||(x.phone||'').includes(custSearchVal)||(x.email||'').toLowerCase().includes(custSearchVal));renderCustomersTable(f)})}
+
+function renderCustomersTable(customers){
+  const tbody=$('customers-tbody');if(!tbody)return;
+  if(customers.length===0){tbody.innerHTML='<tr><td colspan="7" class="table-empty">No customers found</td></tr>';return}
+  tbody.innerHTML=customers.map(c=>`<tr>
+    <td><strong>${c.name}</strong></td><td>${c.phone||'-'}</td><td>${c.email||'-'}</td>
+    <td><span class="badge badge-amber">${(c.points||0).toLocaleString()} pts</span></td>
+    <td>${fmt(c.totalSpent||0)}</td><td>${c.visits||0}</td>
+    <td><div class="row-actions">
+      <button title="View History" onclick="showCustomerHistory(${c.id})"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></button>
+      <button title="Edit" onclick="showCustomerForm(${c.id})"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+      <button title="Delete" onclick="deleteCustomer(${c.id})"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+    </div></td></tr>`).join('');
+}
+
+function showCustomerForm(id){
+  const isEdit=id!==undefined;
+  const load=isEdit?dbGet('customers',id):Promise.resolve({});
+  load.then(c=>{
+    c=c||{};
+    const html=`<div class="modal-header"><h2>${isEdit?'Edit':'Add'} Customer</h2><button class="modal-close" onclick="closeModal()">&times;</button></div>
+    <div class="modal-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group" style="grid-column:1/-1"><label>Full Name</label><input id="cf-name" value="${c.name||''}"></div>
+        <div class="form-group"><label>Phone</label><input id="cf-phone" value="${c.phone||''}" placeholder="(555) 123-4567"></div>
+        <div class="form-group"><label>Email</label><input id="cf-email" type="email" value="${c.email||''}" placeholder="customer@example.com"></div>
+        ${isEdit?`<div class="form-group"><label>Loyalty Points</label><input id="cf-points" type="number" min="0" value="${c.points||0}"></div>`:''}
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn-outline" onclick="closeModal()">Cancel</button><button class="btn-primary" onclick="saveCustomer(${id||'null'})">Save Customer</button></div>`;
+    openModal(html,'modal-md');
+  });
+}
+
+async function saveCustomer(id){
+  const name=$('cf-name').value.trim();
+  if(!name){showToast('Customer name is required');return}
+  const data={name,phone:$('cf-phone').value.trim(),email:$('cf-email').value.trim()};
+  if(id){
+    const existing=await dbGet('customers',id);
+    data.id=id;data.points=parseInt($('cf-points')?.value)||existing.points||0;
+    data.totalSpent=existing.totalSpent||0;data.visits=existing.visits||0;
+    data.lastVisit=existing.lastVisit||null;data.createdAt=existing.createdAt;
+  } else {
+    data.points=0;data.totalSpent=0;data.visits=0;data.lastVisit=null;data.createdAt=new Date().toISOString();
+  }
+  await dbPut('customers',data);
+  closeModal();showToast(id?'Customer updated':'Customer added');
+  if(currentScreen==='loyalty')renderLoyaltyScreen();
+}
+
+async function deleteCustomer(id){
+  if(!confirm('Delete this customer?'))return;
+  await dbDel('customers',id);showToast('Customer deleted');renderLoyaltyScreen();
+}
+
+async function showCustomerHistory(id){
+  const c=await dbGet('customers',id);
+  const allSales=await dbAll('sales');
+  const custSales=allSales.filter(s=>s.customerId===id).sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  let html=`<div class="modal-header"><h2>${c.name} - History</h2><button class="modal-close" onclick="closeModal()">&times;</button></div>
+  <div class="modal-body">
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px">
+      <div style="text-align:center;padding:12px;background:var(--bg);border-radius:10px"><div style="font-size:20px;font-weight:700;font-family:var(--font-display);color:var(--gold)">${(c.points||0).toLocaleString()}</div><div style="font-size:11px;color:var(--text3)">Points</div></div>
+      <div style="text-align:center;padding:12px;background:var(--bg);border-radius:10px"><div style="font-size:20px;font-weight:700;font-family:var(--font-display)">${fmt(c.totalSpent||0)}</div><div style="font-size:11px;color:var(--text3)">Total Spent</div></div>
+      <div style="text-align:center;padding:12px;background:var(--bg);border-radius:10px"><div style="font-size:20px;font-weight:700;font-family:var(--font-display)">${c.visits||0}</div><div style="font-size:11px;color:var(--text3)">Visits</div></div>
+    </div>
+    <h3 style="font-family:var(--font-display);font-size:14px;font-weight:700;margin-bottom:12px">Purchase History</h3>`;
+  if(custSales.length===0){html+=`<div class="table-empty">No purchases yet</div>`}
+  else{html+=`<table style="width:100%"><thead><tr><th>Sale #</th><th>Date</th><th>Items</th><th>Total</th></tr></thead><tbody>${custSales.slice(0,20).map(s=>`<tr><td>${s.saleNumber}</td><td>${fmtDate(s.createdAt)}</td><td>${s.items.reduce((sum,i)=>sum+i.qty,0)}</td><td><strong>${fmt(s.total)}</strong></td></tr>`).join('')}</tbody></table>`}
+  html+=`</div><div class="modal-footer"><button class="btn-outline" onclick="closeModal()">Close</button></div>`;
+  openModal(html,'modal-md');
+}
+
+async function saveLoyaltyConfig(){
+  await dbPut('settings',{key:'loyaltyPointsPerDollar',value:parseFloat($('loy-ppd').value)||1});
+  await dbPut('settings',{key:'loyaltyRedemptionThreshold',value:parseInt($('loy-thresh').value)||100});
+  await dbPut('settings',{key:'loyaltyRedemptionRate',value:parseFloat($('loy-rate').value)||5});
+  await dbPut('settings',{key:'loyaltyEnabled',value:$('loy-enabled').checked});
+  settings=await loadSettings();
+  showToast('Loyalty configuration saved');renderLoyaltyScreen();
+}
+
+// Customer selector at checkout
+function updateCustomerBar(){
+  const display=$('customer-display');
+  const bar=$('customer-bar');
+  if(selectedCustomer){
+    display.style.display='flex';
+    const loyaltyEnabled=settings.loyaltyEnabled!==false;
+    display.innerHTML=`<strong>${selectedCustomer.name}</strong>${loyaltyEnabled?`<span class="customer-pts">${(selectedCustomer.points||0).toLocaleString()} pts</span>`:''}<button onclick="selectedCustomer=null;redeemingPoints=false;updateCustomerBar();updateCartTotals()" style="margin-left:auto;width:20px;height:20px;border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--text3)">&times;</button>`;
+    bar.querySelector('button:first-child').style.display='none';
+  } else {
+    display.style.display='none';
+    bar.querySelector('button:first-child').style.display='flex';
+  }
+}
+
+function showCustomerSelector(){
+  const html=`<div class="modal-header"><h2>Select Customer</h2><button class="modal-close" onclick="closeModal()">&times;</button></div>
+  <div class="modal-body">
+    <div class="customer-search-dropdown" style="margin-bottom:16px">
+      <input id="csel-search" placeholder="Search by name or phone..." oninput="searchCustomersForSelect(this.value)" autocomplete="off">
+      <div id="csel-results" class="customer-search-results" style="display:none"></div>
+    </div>
+    <div id="csel-list" style="max-height:300px;overflow-y:auto"></div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px">
+      <button class="btn-add" onclick="closeModal();showCustomerForm()" style="width:100%;justify-content:center"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Add New Customer</button>
+    </div>
+  </div>`;
+  openModal(html,'modal-sm');
+  dbAll('customers').then(custs=>{
+    renderCustomerSelectList(custs);
+  });
+}
+
+function renderCustomerSelectList(custs){
+  const el=$('csel-list');if(!el)return;
+  if(custs.length===0){el.innerHTML='<div class="table-empty">No customers yet</div>';return}
+  el.innerHTML=custs.map(c=>`<div class="cs-item" onclick="selectCustomerById(${c.id})">
+    <div><span class="cs-name">${c.name}</span><br><span class="cs-phone">${c.phone||'No phone'}</span></div>
+    <span class="badge badge-amber">${(c.points||0)} pts</span></div>`).join('');
+}
+
+function searchCustomersForSelect(q){
+  const results=$('csel-results');
+  if(!q.trim()){results.style.display='none';dbAll('customers').then(c=>renderCustomerSelectList(c));return}
+  dbAll('customers').then(custs=>{
+    const filtered=custs.filter(c=>c.name.toLowerCase().includes(q.toLowerCase())||(c.phone||'').includes(q));
+    renderCustomerSelectList(filtered);
+    if(filtered.length>0&&q.length>=2){
+      results.style.display='block';
+      results.innerHTML=filtered.slice(0,5).map(c=>`<div class="cs-item" onclick="selectCustomerById(${c.id})"><span class="cs-name">${c.name}</span><span class="cs-phone">${c.phone||''}</span></div>`).join('');
+    } else {results.style.display='none'}
+  });
+}
+
+async function selectCustomerById(id){
+  selectedCustomer=await dbGet('customers',id);
+  redeemingPoints=false;
+  closeModal();updateCustomerBar();updateCartTotals();
+  showToast('Customer: '+selectedCustomer.name);
+}
+
+// ═══════════════════════════════════════════
+// PROMOTIONS
+// ═══════════════════════════════════════════
+async function renderPromotionsScreen(){
+  allPromotions=await dbAll('promotions');
+  const active=allPromotions.filter(p=>p.active).length;
+  const now=new Date();
+  const expired=allPromotions.filter(p=>p.endDate&&new Date(p.endDate)<now).length;
+  $('screen-promotions').innerHTML=`
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b"><svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div><div class="stat-info"><h3>${allPromotions.length}</h3><p>Total Promotions</p></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(22,163,74,0.1);color:#16a34a"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="stat-info"><h3>${active}</h3><p>Active</p></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:rgba(220,38,38,0.1);color:#dc2626"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><div class="stat-info"><h3>${expired}</h3><p>Expired</p></div></div>
+    </div>
+    <div class="table-card">
+      <div class="table-header">
+        <h2>All Promotions</h2>
+        <button class="btn-add" onclick="showPromotionForm()"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Create Promotion</button>
+      </div>
+      <div style="overflow-x:auto">
+      <table><thead><tr><th>Name</th><th>Type</th><th>Target</th><th>Value</th><th>Dates</th><th>Status</th><th></th></tr></thead>
+      <tbody id="promotions-tbody"></tbody></table>
+      </div>
+    </div>`;
+  renderPromotionsTable(allPromotions);
+}
+
+function renderPromotionsTable(promos){
+  const tbody=$('promotions-tbody');if(!tbody)return;
+  if(promos.length===0){tbody.innerHTML='<tr><td colspan="7" class="table-empty">No promotions created yet</td></tr>';return}
+  const now=new Date();
+  const typeLabels={bxgy:'Buy X Get Y',bundle:'Bundle Discount',percent:'% Off'};
+  const typeBadge={bxgy:'promo-type-bxgy',bundle:'promo-type-bundle',percent:'promo-type-percent'};
+  tbody.innerHTML=promos.map(p=>{
+    const isExpired=p.endDate&&new Date(p.endDate)<now;
+    const isUpcoming=p.startDate&&new Date(p.startDate)>now;
+    let statusBadge;
+    if(!p.active)statusBadge='<span class="badge badge-gray">Inactive</span>';
+    else if(isExpired)statusBadge='<span class="badge badge-red">Expired</span>';
+    else if(isUpcoming)statusBadge='<span class="badge badge-amber">Upcoming</span>';
+    else statusBadge='<span class="badge badge-green">Active</span>';
+    let valueStr='';
+    if(p.type==='bxgy')valueStr=`Buy ${p.buyQty} Get ${p.freeQty} Free`;
+    else if(p.type==='bundle')valueStr=`${p.discountValue}% off ${p.minQty}+ items`;
+    else if(p.type==='percent')valueStr=`${p.discountValue}% off`;
+    const dates=(p.startDate?fmtDate(p.startDate):'Any')+' - '+(p.endDate?fmtDate(p.endDate):'Ongoing');
+    return `<tr>
+      <td><strong>${p.name}</strong></td>
+      <td><span class="promo-type-badge ${typeBadge[p.type]||''}">${typeLabels[p.type]||p.type}</span></td>
+      <td>${p.targetType==='product'?(p.targetName||'Product'):(p.targetType==='category'?p.targetName:'All')}</td>
+      <td>${valueStr}</td>
+      <td style="font-size:12px">${dates}</td>
+      <td>${statusBadge}</td>
+      <td><div class="row-actions">
+        <button title="${p.active?'Deactivate':'Activate'}" onclick="togglePromotion(${p.id})"><svg viewBox="0 0 24 24">${p.active?'<circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/>':'<polyline points="20 6 9 17 4 12"/>'}</svg></button>
+        <button title="Edit" onclick="showPromotionForm(${p.id})"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+        <button title="Delete" onclick="deletePromotion(${p.id})"><svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
+      </div></td></tr>`}).join('');
+}
+
+function showPromotionForm(id){
+  const isEdit=id!==undefined;
+  const load=isEdit?dbGet('promotions',id):Promise.resolve({type:'percent',active:true,targetType:'all',buyQty:2,freeQty:1,minQty:2,discountValue:10});
+  load.then(p=>{
+    p=p||{type:'percent',active:true,targetType:'all',buyQty:2,freeQty:1,minQty:2,discountValue:10};
+    const cats=[...new Set(allProducts.map(x=>x.category))];
+    const html=`<div class="modal-header"><h2>${isEdit?'Edit':'Create'} Promotion</h2><button class="modal-close" onclick="closeModal()">&times;</button></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Promotion Name</label><input id="prf-name" value="${p.name||''}" placeholder="e.g. Summer Sale 20% Off"></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label>Promotion Type</label>
+          <select id="prf-type" onchange="updatePromoFormFields()">
+            <option value="percent" ${p.type==='percent'?'selected':''}>Percentage Off</option>
+            <option value="bxgy" ${p.type==='bxgy'?'selected':''}>Buy X Get Y Free</option>
+            <option value="bundle" ${p.type==='bundle'?'selected':''}>Bundle Discount</option>
+          </select>
+        </div>
+        <div class="form-group"><label>Apply To</label>
+          <select id="prf-targettype" onchange="updatePromoTargetField()">
+            <option value="all" ${p.targetType==='all'?'selected':''}>All Products</option>
+            <option value="category" ${p.targetType==='category'?'selected':''}>Specific Category</option>
+            <option value="product" ${p.targetType==='product'?'selected':''}>Specific Product</option>
+          </select>
+        </div>
+        <div class="form-group" id="prf-cat-group" style="display:${p.targetType==='category'?'block':'none'}"><label>Category</label>
+          <select id="prf-cat">${cats.map(c=>`<option ${c===p.targetName?'selected':''}>${c}</option>`).join('')}</select>
+        </div>
+        <div class="form-group" id="prf-prod-group" style="display:${p.targetType==='product'?'block':'none'}"><label>Product</label>
+          <select id="prf-prod">${allProducts.map(x=>`<option value="${x.id}" ${x.id===p.targetId?'selected':''}>${x.name}</option>`).join('')}</select>
+        </div>
+      </div>
+      <div id="prf-type-fields">
+        <div id="prf-percent-fields" style="display:${p.type==='percent'?'block':'none'}">
+          <div class="form-group"><label>Discount Percentage (%)</label><input id="prf-discval" type="number" min="1" max="100" value="${p.discountValue||10}"></div>
+        </div>
+        <div id="prf-bxgy-fields" style="display:${p.type==='bxgy'?'grid':'none'};grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group"><label>Buy Quantity</label><input id="prf-buyqty" type="number" min="1" value="${p.buyQty||2}"></div>
+          <div class="form-group"><label>Get Free Quantity</label><input id="prf-freeqty" type="number" min="1" value="${p.freeQty||1}"></div>
+        </div>
+        <div id="prf-bundle-fields" style="display:${p.type==='bundle'?'grid':'none'};grid-template-columns:1fr 1fr;gap:12px">
+          <div class="form-group"><label>Minimum Quantity</label><input id="prf-minqty" type="number" min="2" value="${p.minQty||2}"></div>
+          <div class="form-group"><label>Discount (%)</label><input id="prf-bundledisc" type="number" min="1" max="100" value="${p.discountValue||10}"></div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="form-group"><label>Start Date (optional)</label><input id="prf-start" type="date" value="${p.startDate?p.startDate.slice(0,10):''}"></div>
+        <div class="form-group"><label>End Date (optional)</label><input id="prf-end" type="date" value="${p.endDate?p.endDate.slice(0,10):''}"></div>
+      </div>
+      <div class="toggle-row"><span>Active</span><label class="toggle"><input type="checkbox" id="prf-active" ${p.active!==false?'checked':''}><span class="slider"></span></label></div>
+    </div>
+    <div class="modal-footer"><button class="btn-outline" onclick="closeModal()">Cancel</button><button class="btn-primary" onclick="savePromotion(${id||'null'})">Save Promotion</button></div>`;
+    openModal(html,'modal-lg');
+  });
+}
+
+function updatePromoFormFields(){
+  const type=$('prf-type').value;
+  $('prf-percent-fields').style.display=type==='percent'?'block':'none';
+  $('prf-bxgy-fields').style.display=type==='bxgy'?'grid':'none';
+  $('prf-bundle-fields').style.display=type==='bundle'?'grid':'none';
+}
+function updatePromoTargetField(){
+  const tt=$('prf-targettype').value;
+  $('prf-cat-group').style.display=tt==='category'?'block':'none';
+  $('prf-prod-group').style.display=tt==='product'?'block':'none';
+}
+
+async function savePromotion(id){
+  const name=$('prf-name').value.trim();
+  if(!name){showToast('Promotion name is required');return}
+  const type=$('prf-type').value;
+  const targetType=$('prf-targettype').value;
+  let targetName='',targetId=null;
+  if(targetType==='category')targetName=$('prf-cat').value;
+  if(targetType==='product'){targetId=parseInt($('prf-prod').value);const p=allProducts.find(x=>x.id===targetId);targetName=p?p.name:''}
+  let discountValue=0,buyQty=2,freeQty=1,minQty=2;
+  if(type==='percent')discountValue=parseFloat($('prf-discval').value)||10;
+  if(type==='bxgy'){buyQty=parseInt($('prf-buyqty').value)||2;freeQty=parseInt($('prf-freeqty').value)||1}
+  if(type==='bundle'){minQty=parseInt($('prf-minqty').value)||2;discountValue=parseFloat($('prf-bundledisc').value)||10}
+  const data={name,type,targetType,targetName,targetId,discountValue,buyQty,freeQty,minQty,
+    startDate:$('prf-start').value||null,endDate:$('prf-end').value||null,
+    active:$('prf-active').checked,createdAt:new Date().toISOString()};
+  if(id)data.id=id;
+  await dbPut('promotions',data);
+  allPromotions=await dbAll('promotions');
+  closeModal();showToast(id?'Promotion updated':'Promotion created');renderPromotionsScreen();
+}
+
+async function togglePromotion(id){
+  const p=await dbGet('promotions',id);
+  p.active=!p.active;
+  await dbPut('promotions',p);
+  allPromotions=await dbAll('promotions');
+  showToast(p.active?'Promotion activated':'Promotion deactivated');renderPromotionsScreen();
+}
+
+async function deletePromotion(id){
+  if(!confirm('Delete this promotion?'))return;
+  await dbDel('promotions',id);
+  allPromotions=await dbAll('promotions');
+  showToast('Promotion deleted');renderPromotionsScreen();
+}
+
+// ═══════════════════════════════════════════
+// PROMOTION ENGINE (applied at checkout)
+// ═══════════════════════════════════════════
+function calculatePromotions(){
+  if(cart.length===0)return [];
+  const now=new Date();
+  const activePromos=allPromotions.filter(p=>{
+    if(!p.active)return false;
+    if(p.startDate&&new Date(p.startDate)>now)return false;
+    if(p.endDate&&new Date(p.endDate+'T23:59:59')<now)return false;
+    return true;
+  });
+  const results=[];
+  for(const promo of activePromos){
+    // Get matching cart items
+    const matchingItems=cart.filter(ci=>{
+      if(promo.targetType==='all')return true;
+      if(promo.targetType==='product')return ci.productId===promo.targetId;
+      if(promo.targetType==='category'){const prod=allProducts.find(p=>p.id===ci.productId);return prod&&prod.category===promo.targetName}
+      return false;
+    });
+    if(matchingItems.length===0)continue;
+
+    if(promo.type==='percent'){
+      const disc=matchingItems.reduce((s,ci)=>s+ci.total,0)*promo.discountValue/100;
+      if(disc>0)results.push({name:`${promo.name} (${promo.discountValue}% off)`,saved:+disc.toFixed(2)});
+    }
+    else if(promo.type==='bxgy'){
+      // For each matching item group, for every (buyQty+freeQty), freeQty are free (cheapest)
+      const totalQty=matchingItems.reduce((s,ci)=>s+ci.qty,0);
+      const groupSize=promo.buyQty+promo.freeQty;
+      const freeCount=Math.floor(totalQty/groupSize)*promo.freeQty;
+      if(freeCount>0){
+        // Sort matching items by price ascending, cheapest items are free
+        const units=[];
+        matchingItems.forEach(ci=>{for(let i=0;i<ci.qty;i++)units.push(ci.price)});
+        units.sort((a,b)=>a-b);
+        const saved=units.slice(0,freeCount).reduce((s,p)=>s+p,0);
+        if(saved>0)results.push({name:`${promo.name} (Buy ${promo.buyQty} Get ${promo.freeQty} Free)`,saved:+saved.toFixed(2)});
+      }
+    }
+    else if(promo.type==='bundle'){
+      const totalQty=matchingItems.reduce((s,ci)=>s+ci.qty,0);
+      if(totalQty>=promo.minQty){
+        const disc=matchingItems.reduce((s,ci)=>s+ci.total,0)*promo.discountValue/100;
+        if(disc>0)results.push({name:`${promo.name} (${promo.discountValue}% off ${promo.minQty}+ items)`,saved:+disc.toFixed(2)});
+      }
+    }
+  }
+  return results;
 }
 
 // ═══════════════════════════════════════════
