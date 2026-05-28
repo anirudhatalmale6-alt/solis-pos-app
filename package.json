@@ -1,6 +1,6 @@
 {
   "name": "solis-pos",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Solis OS Point of Sale - Desktop Edition",
   "main": "main.js",
   "scripts": {

@@ -1,7 +1,9 @@
-const { app, BrowserWindow, Menu } = require('electron');
+const { app, BrowserWindow, Menu, session } = require('electron');
 const path = require('path');
 
 let mainWindow;
+
+const WEB_URL = 'https://solis-os.com/app/';
 
 function createWindow() {
   mainWindow = new BrowserWindow({
@@ -14,11 +16,14 @@ function createWindow() {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
-      contextIsolation: true
+      contextIsolation: true,
+      partition: 'persist:solipos'
     }
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL(WEB_URL).catch(() => {
+    mainWindow.loadFile('index.html');
+  });
 
   Menu.setApplicationMenu(Menu.buildFromTemplate([
     {
