@@ -1,6 +1,6 @@
 {
   "name": "solis-pos",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Solis OS Point of Sale - Desktop Edition",
   "main": "main.js",
   "scripts": {
@@ -35,10 +35,12 @@
       "icon": "build/icon.png"
     },
     "nsis": {
-      "oneClick": false,
+      "oneClick": true,
       "allowElevation": true,
-      "createDesktopShortcut": true,
-      "createStartMenuShortcut": true
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
+      "shortcutName": "Solis POS",
+      "runAfterFinish": true
     }
   },
   "dependencies": {
